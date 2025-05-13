@@ -1,1 +1,29 @@
-<h1>Hello</h1>
+<h1>Tempalate Driven Form</h1>
+<form #userdetails="ngForm" (ngSubmit)="addDetails(userdetails.value)" >
+    <input #name="ngModel" type="text" required placeholder="Enter your name" name="name"ngModel>
+    <span class="error" *ngIf="name.invalid && name.touched">Name is Required</span>
+    <br>
+    <br>
+    <input #password="ngModel" type="password" minlength="5"required placeholder="Enter your password" name="password" ngModel>
+    <span class="error" *ngIf="password.invalid && password.touched">Please enter valid password</span>
+    <br>
+    <br>
+    <select #gender="ngModel" required name="gender" ngModel >
+        <span class="error" *ngIf="gender.invalid && gender.touched">Gender is required</span>
+<option value="">Select Gender</option>
+<option value="male">Male</option>
+<option value="female">Female</option>
+    </select>
+<br>
+<br>
+<input #range="ngModel" required type="range" min="0" max="20" name="range" ngModel>
+<span class="error" *ngIf="range.invalid && range.touched">Range is required</span>
+<br>
+<br>
+<button [disabled]="userdetails.invalid" required type="button">Submit</button>
+
+</form>
+<h2>{{userdetails?.value?.name}}</h2>
+<h2>{{userdetails?.value?.gender}}</h2>
+<h2>{{userdetails?.value?.range}}</h2>
+<h2>{{userdetails?.value?.password}}</h2>
